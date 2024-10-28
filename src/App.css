@@ -1,15 +1,48 @@
+:root {
+  --spacing0: 0.3rem;
+  --spacing1: 1rem;
+  --spacing2: 2rem;
+  --lightGrey: #ccc;
+  --grey: #282c34;
+}
+
 input,
 select {
   width: 97%;
+  padding: var(--spacing0);
+  margin: var(--spacing0) 0;
+  border: 1px solid var(--lightGrey);
+  border-radius: var(--spacing0);
+  box-sizing: border-box;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--grey);
+  outline: none;
+  box-shadow: 0 0 5px var(--lightGrey);
+}
+
+ul {
+  padding-left: 0;
 }
 
 button {
   float: right;
-  margin-top: 1rem;
+  margin-top: var(--spacing1);
+  background-color: var(--grey);
+  border: none;
+  color: white;
+  font-weight: 800;
+  padding: var(--spacing0) var(--spacing2);
+  border-radius: var(--spacing0);
+  cursor: pointer;
 }
 
 .header {
-  background-color: #282c34;
+  background-color: var(--grey);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,22 +53,22 @@ button {
 
 .container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  padding: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: var(--spacing2);
+  padding: var(--spacing2);
 }
 
 .twoColumn {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
+  gap: var(--spacing);
 }
 
 .card {
   border-bottom: 2px solid #000;
   border-top: 1px solid #000;
-  padding-bottom: 1rem;
-  padding-top: 1rem;
+  padding-bottom: var(--spacing1);
+  padding-top: var(--spacing1);
   margin-bottom: 5px;
   clear: both;
   overflow: hidden;

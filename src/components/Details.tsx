@@ -20,7 +20,9 @@ const Details = ({ type, item, options, updateData, addToBooking }: Props) => {
         options={options}
       />
       {addToBooking && (
-        <button onClick={() => addToBooking(item, type)}>Select</button>
+        <button type="button" onClick={() => addToBooking(item, type)}>
+          Select
+        </button>
       )}
     </li>
   );

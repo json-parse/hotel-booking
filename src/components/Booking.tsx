@@ -30,7 +30,9 @@ const Booking = ({ booking, addBooking }: Props) => {
         {booking.client && <Info title="Client" info={booking.client} />}
       </div>
       {booking.hotel && booking.client && (
-        <button onClick={formatAndSave}>Book</button>
+        <button type="button" onClick={formatAndSave}>
+          Book
+        </button>
       )}
     </div>
   );
