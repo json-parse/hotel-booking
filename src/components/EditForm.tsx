@@ -6,10 +6,11 @@ import Select from "./form/Select";
 interface Props {
   item: Hotel | Client | HotelBooking;
   type: EntityType;
+  options?: { hotels: Hotel[]; clients: Client[] };
   updateData: (changedItem: Client | Hotel, type: EntityType) => void;
 }
 
-const EditForm = ({ item, type, updateData }: Props) => {
+const EditForm = ({ item, type, options, updateData }: Props) => {
   const [details, setDetails] = useState(item);
   const { name, address, createdDate } = details;
 
@@ -21,7 +22,7 @@ const EditForm = ({ item, type, updateData }: Props) => {
     details: Hotel | Client | HotelBooking
   ): details is Client => (details as Client).phone !== undefined;
 
-  const isExistingBooking = (
+  const isBooking = (
     details: Hotel | Client | HotelBooking
   ): details is HotelBooking =>
     Boolean(
@@ -53,16 +54,18 @@ const EditForm = ({ item, type, updateData }: Props) => {
         value={createdDate}
         handleChange={handleChange}
       />
-      {isExistingBooking(details) && (
+      {isBooking(details) && options && (
         <>
           <Select
             name="hotelId"
             value={details.hotelId}
+            options={options.hotels}
             handleChange={handleChange}
           />
           <Select
             name="clientId"
             value={details.clientId}
+            options={options.clients}
             handleChange={handleChange}
           />
         </>

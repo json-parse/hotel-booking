@@ -74,7 +74,12 @@ function App() {
           {newBooking && (
             <Booking booking={newBooking} addBooking={addBooking} />
           )}
-          <List type="booking" items={data.bookings} updateData={updateData} />
+          <List
+            type="booking"
+            items={data.bookings}
+            updateData={updateData}
+            options={{ hotels: data.hotels, clients: data.clients }}
+          />
         </div>
       </div>
     </>
