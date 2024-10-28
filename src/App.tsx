@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import { Hotel, Client, NewBooking, EntityType } from "./Types";
+import { Hotel, Client, HotelBooking, NewBooking, EntityType } from "./Types";
 import Header from "./components/Header";
 import List from "./components/List";
 import Booking from "./components/Booking";
@@ -45,6 +45,15 @@ function App() {
       .update({ ...data, [key]: updatedArray });
   };
 
+  const addBooking = (booking: HotelBooking) => {
+    const bookingsClone: HotelBooking[] = [...data.bookings];
+    bookingsClone.push(booking);
+    firebaseApp
+      .database()
+      .ref("data")
+      .update({ ...data, bookings: bookingsClone });
+  };
+
   return (
     <>
       <Header />
@@ -62,7 +71,9 @@ function App() {
           updateData={updateData}
         />
         <div>
-          {newBooking && <Booking booking={newBooking} />}
+          {newBooking && (
+            <Booking booking={newBooking} addBooking={addBooking} />
+          )}
           <List type="booking" items={data.bookings} updateData={updateData} />
         </div>
       </div>

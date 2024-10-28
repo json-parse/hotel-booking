@@ -14,9 +14,7 @@ const Details = ({ type, item, updateData, addToBooking }: Props) => {
     <li className="card">
       <EditForm item={item} type={type} updateData={updateData} />
       {addToBooking && (
-        <button disabled={false} onClick={() => addToBooking(item, type)}>
-          Select
-        </button>
+        <button onClick={() => addToBooking(item, type)}>Select</button>
       )}
     </li>
   );
