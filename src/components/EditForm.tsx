@@ -1,15 +1,21 @@
-import React, { useState } from "react";
-import { Hotel, Client, HotelBooking } from "../Types";
+import React, { useState, useEffect } from "react";
+import { Hotel, Client, HotelBooking, EntityType } from "../Types";
 import Input from "./form/Input";
 import Select from "./form/Select";
 
 interface Props {
   item: Hotel | Client | HotelBooking;
+  type: EntityType;
+  updateData: (changedItem: Client | Hotel, type: EntityType) => void;
 }
 
-const EditForm = ({ item }: Props) => {
+const EditForm = ({ item, type, updateData }: Props) => {
   const [details, setDetails] = useState(item);
   const { name, address, createdDate } = details;
+
+  useEffect(() => {
+    updateData(details, type);
+  }, [details]);
 
   const isClient = (
     details: Hotel | Client | HotelBooking

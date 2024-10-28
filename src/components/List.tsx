@@ -5,10 +5,11 @@ import Details from "./Details";
 interface Props {
   type: EntityType;
   items?: Hotel[] | Client[] | HotelBooking[];
+  updateData: (changedItem: Client | Hotel, type: EntityType) => void;
   addToBooking?: (item: Client | Hotel, type: EntityType) => void;
 }
 
-const List = ({ type, items, addToBooking }: Props) => {
+const List = ({ type, items, updateData, addToBooking }: Props) => {
   const title =
     type === "hotel" ? "Hotels" : type === "client" ? "Clients" : "Bookings";
 
@@ -23,6 +24,7 @@ const List = ({ type, items, addToBooking }: Props) => {
               item={item}
               type={type}
               addToBooking={addToBooking}
+              updateData={updateData}
             />
           ))}
         </ul>
