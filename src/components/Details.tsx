@@ -12,12 +12,12 @@ interface Props {
 }
 
 const Details = ({ type, item, options, updateData, addToBooking }: Props) => {
-  const [isEdit, setIsEdit] = useState(false);
   const [details, setDetails] = useState(item);
+  const [isEdit, setIsEdit] = useState(false);
+  const [isValidForm, setIsValidForm] = useState(true);
 
   const handleBtnClick = () => {
     if (isEdit) {
-      //todo: update only if valid form
       updateData(details, type);
     }
     setIsEdit(!isEdit);
@@ -26,20 +26,31 @@ const Details = ({ type, item, options, updateData, addToBooking }: Props) => {
   return (
     <li className="card">
       {isEdit ? (
-        <EditForm details={details} setDetails={setDetails} options={options} />
+        <EditForm
+          details={details}
+          options={options}
+          setDetails={setDetails}
+          setIsValidForm={setIsValidForm}
+        />
       ) : (
         <Info info={item} options={options} />
       )}
       {addToBooking && (
         <button
           type="button"
+          className={isEdit ? "disabledBtn" : ""}
           disabled={isEdit}
           onClick={() => addToBooking(item, type)}
         >
           Select
         </button>
       )}
-      <button type="button" className="secondaryBtn" onClick={handleBtnClick}>
+      <button
+        type="button"
+        className={`secondaryBtn ${!isValidForm && "disabledBtn"}`}
+        disabled={!isValidForm}
+        onClick={handleBtnClick}
+      >
         {isEdit ? "Save" : "Edit"}
       </button>
     </li>

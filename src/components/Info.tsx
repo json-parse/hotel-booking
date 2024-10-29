@@ -28,6 +28,8 @@ const Info = ({ info, options }: Props) => {
       const hotel = options.hotels.find((item) => info.hotelId == item.id);
       if (client && hotel)
         setDetails({ ...info, clientId: client.name, hotelId: hotel.name });
+    } else {
+      setDetails(info);
     }
   }, [info, options]);
 

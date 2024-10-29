@@ -10,7 +10,6 @@ input,
 select {
   width: 97%;
   padding: var(--spacing0);
-  margin: var(--spacing0) 0;
   border: 1px solid var(--lightGrey);
   border-radius: var(--spacing0);
   box-sizing: border-box;
@@ -45,6 +44,24 @@ button {
 .secondaryBtn {
   background-color: var(--lightGrey);
   color: var(--grey);
+}
+.disabledBtn {
+  opacity: 60%;
+  cursor: not-allowed;
+}
+
+.formField {
+  margin: var(--spacing0) 0;
+}
+.error {
+  border: 1px solid red;
+}
+.error:focus {
+  border-color: red;
+}
+.errorText {
+  color: red;
+  font-size: small;
 }
 
 .header {
