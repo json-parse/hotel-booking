@@ -1,33 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { Hotel, Client, HotelBooking, EntityType } from "../Types";
+import React from "react";
+import { Hotel, Client, HotelBooking } from "../Types";
 import Input from "./form/Input";
 import Select from "./form/Select";
+import { isBooking, isClient } from "../helpers";
 
 interface Props {
-  item: Hotel | Client | HotelBooking;
-  type: EntityType;
+  details: Hotel | Client | HotelBooking;
   options?: { hotels: Hotel[]; clients: Client[] };
-  updateData: (changedItem: Client | Hotel, type: EntityType) => void;
+  setDetails: (details: Hotel | Client | HotelBooking) => void;
 }
 
-const EditForm = ({ item, type, options, updateData }: Props) => {
-  const [details, setDetails] = useState(item);
+const EditForm = ({ details, options, setDetails }: Props) => {
   const { name, address, createdDate } = details;
-
-  useEffect(() => {
-    updateData(details, type);
-  }, [details]);
-
-  const isClient = (
-    details: Hotel | Client | HotelBooking
-  ): details is Client => (details as Client).phone !== undefined;
-
-  const isBooking = (
-    details: Hotel | Client | HotelBooking
-  ): details is HotelBooking =>
-    Boolean(
-      (details as HotelBooking).hotelId && (details as HotelBooking).hotelId
-    );
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>

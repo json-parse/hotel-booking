@@ -37,8 +37,14 @@ button {
   color: white;
   font-weight: 800;
   padding: var(--spacing0) var(--spacing2);
+  margin: 0 var(--spacing0);
   border-radius: var(--spacing0);
   cursor: pointer;
+}
+
+.secondaryBtn {
+  background-color: var(--lightGrey);
+  color: var(--grey);
 }
 
 .header {

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Hotel, Client, HotelBooking, EntityType } from "../Types";
 import Details from "./Details";
 
@@ -22,8 +22,8 @@ const List = ({ type, items, options, updateData, addToBooking }: Props) => {
           {items.map((item) => (
             <Details
               key={item.id}
-              item={item}
               type={type}
+              item={item}
               options={options}
               addToBooking={addToBooking}
               updateData={updateData}

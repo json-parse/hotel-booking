@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Hotel, Client, HotelBooking, EntityType } from "../Types";
 import EditForm from "./EditForm";
+import Info from "./Info";
 
 interface Props {
   type: EntityType;
@@ -11,19 +12,36 @@ interface Props {
 }
 
 const Details = ({ type, item, options, updateData, addToBooking }: Props) => {
+  const [isEdit, setIsEdit] = useState(false);
+  const [details, setDetails] = useState(item);
+
+  const handleBtnClick = () => {
+    if (isEdit) {
+      //todo: update only if valid form
+      updateData(details, type);
+    }
+    setIsEdit(!isEdit);
+  };
+
   return (
     <li className="card">
-      <EditForm
-        item={item}
-        type={type}
-        updateData={updateData}
-        options={options}
-      />
+      {isEdit ? (
+        <EditForm details={details} setDetails={setDetails} options={options} />
+      ) : (
+        <Info info={item} options={options} />
+      )}
       {addToBooking && (
-        <button type="button" onClick={() => addToBooking(item, type)}>
+        <button
+          type="button"
+          disabled={isEdit}
+          onClick={() => addToBooking(item, type)}
+        >
           Select
         </button>
       )}
+      <button type="button" className="secondaryBtn" onClick={handleBtnClick}>
+        {isEdit ? "Save" : "Edit"}
+      </button>
     </li>
   );
 };

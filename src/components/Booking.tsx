@@ -26,8 +26,18 @@ const Booking = ({ booking, addBooking }: Props) => {
     <div className="card">
       <h3>New booking</h3>
       <div className="twoColumn">
-        {booking.hotel && <Info title="Hotel" info={booking.hotel} />}
-        {booking.client && <Info title="Client" info={booking.client} />}
+        {booking.hotel && (
+          <div>
+            <h6>Hotel</h6>
+            <Info info={booking.hotel} />
+          </div>
+        )}
+        {booking.client && (
+          <div>
+            <h6>Client</h6>
+            <Info info={booking.client} />
+          </div>
+        )}
       </div>
       {booking.hotel && booking.client && (
         <button type="button" onClick={formatAndSave}>
