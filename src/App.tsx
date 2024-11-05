@@ -52,6 +52,7 @@ function App() {
       .database()
       .ref("data")
       .update({ ...data, bookings: bookingsClone });
+    setNewBooking(undefined);
   };
 
   return (
